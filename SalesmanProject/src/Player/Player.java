@@ -1,7 +1,12 @@
 package Player;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import ItemsPackage.GunLayout;
+import ItemsPackage.ItemsLayout;
+import ItemsPackage.TreasureLayout;
 import MapPackage.MapLayout;
 import GamePackage.GameLayout;
 
@@ -12,10 +17,16 @@ public class Player {
     public int current_x = 0;
     public int current_y = 0;
     public int[][] visited = new int[MapLayout.map_blocks_count][MapLayout.map_blocks_count];
-    JFrame frame;
-    JLabel player;
+    public JFrame frame;
+    public JLabel player;
 
-    public Player(JFrame frame, int id) {
+    public MapLayout mapLayout;
+
+    public ArrayList<TreasureLayout> foundTreasures = new ArrayList<>();
+    public ArrayList<GunLayout> guns = new ArrayList<>();
+
+    public Player(JFrame frame, int id, MapLayout mapLayout) {
+        this.mapLayout = mapLayout;
         for (int[] row : visited)
             Arrays.fill(row, 0);
 

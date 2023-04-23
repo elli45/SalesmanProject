@@ -1,6 +1,7 @@
 package GamePackage;
 
 import javax.swing.*;
+
 import ColorPackage.ProjectColors;
 import ControllerPackage.ControllerLayout;
 import MapPackage.MapLayout;
@@ -25,7 +26,7 @@ public class GameLayout {
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.getContentPane().setBackground(ProjectColors.backgroundColor);
 
-        MapLayout map1 = new MapLayout();
+        MapLayout map1 = new MapLayout(frame1);
         ControllerLayout controller1 = new ControllerLayout(frame1);
         DiceLayout dice1 = new DiceLayout(frame1);
         new ScoreBoardLayout(frame1);
@@ -36,13 +37,16 @@ public class GameLayout {
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.getContentPane().setBackground(ProjectColors.backgroundColor);
 
-        MapLayout map2 = new MapLayout();
+        MapLayout map2 = new MapLayout(frame2);
         ControllerLayout controller2 = new ControllerLayout(frame2);
         DiceLayout dice2 = new DiceLayout(frame2);
         new ScoreBoardLayout(frame2);
 
-        Player p1 = new Player(frame1, 1);
-        Player p2 = new Player(frame2, 2);
+        Player p1 = new Player(frame1, 1, map1);
+        Player p2 = new Player(frame2, 2, map2);
+
+        map1.player = p1;
+        map2.player = p2;
 
         frame1.add(map1);
         frame1.setVisible(true);
